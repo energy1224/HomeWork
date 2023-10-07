@@ -8,7 +8,7 @@ public class Task1 {
     public static void main(String[] args) {
 
 
-        int num = (int) (Math.random() * (100 - 10)) + 10;
+        int num = (int) (Math.random() * (500 - 10)) + 10;
 
         if (num > 25 && num < 200) {
             System.out.println("Число " + num + " содержится в интервале (25;200)");

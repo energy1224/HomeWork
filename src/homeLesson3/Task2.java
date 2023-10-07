@@ -12,14 +12,14 @@ public class Task2 {
 
     public static void main(String[] args) {
 
-        int currentScoreValue = 91;
+        int currentScoreValue = 85;
 
 
         if (currentScoreValue >= 90)
             System.out.println("Пользователь занял первое место");
-        else if (currentScoreValue <= 89 && currentScoreValue >= 80)
+        else if (/*currentScoreValue <= 89 &&*/ currentScoreValue >= 80)
             System.out.println("Пользователь занял второе место");
-        else if (currentScoreValue >= 79 && currentScoreValue >= 70)
+        else if (/*currentScoreValue <= 79 &&*/ currentScoreValue >= 70)
             System.out.println("Пользователь занял третье место");
 
         else
