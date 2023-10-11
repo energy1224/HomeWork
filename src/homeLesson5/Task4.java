@@ -11,19 +11,23 @@ public class Task4 {
 
         int maxSum=0;
         int subMassiveSum=0;
+        int wStart =0;
+        int wEnd;
 
-        for (int i = 0; i < task04.length-subMassiveLength+1 ; i++) {
 
-            for (int j = i; j < subMassiveLength+i; j++) {
-                subMassiveSum +=task04[j];
+        for ( wEnd = 0; wEnd < task04.length; wEnd++) {
+            subMassiveSum +=task04[wEnd];
+            if (wEnd==subMassiveLength-1+wStart){
+                if(subMassiveSum>maxSum) {
+                    maxSum = subMassiveSum;
+                }
+                subMassiveSum-=task04[wStart];
+                wStart++;
             }
-           // System.out.println(subMassiveSum);
-            if(subMassiveSum>maxSum){
-                maxSum=subMassiveSum;
-            }
-            subMassiveSum=0;
+
         }
         System.out.println("Максимальная сумма четырёх смежных целых чисел " + maxSum);
+
     }
 }
 
