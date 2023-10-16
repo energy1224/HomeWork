@@ -50,22 +50,23 @@ public class Book {
         if (author == null) {
             throw new IllegalArgumentException("author not null");
         }
-        if(authors[getAuthors().length-1] != null)
+        if(authors[getAuthors().length-1] != null) {
             System.out.println("Список соавторов уже заполнен");
+            return;
+        }
 
         int index = 0;
         while (index < getAuthors().length) {
             if (authors[index] == null) {
                 authors[index] = author;
-                break;
+                return;
+              //  break;
             } else if (authors[index].equals(author)) {
                 System.out.println("Автор " + author.getName() + " уже есть в списке соавторов.");
-                break;
-            } else index++;
-
-
-
-
+               // break;
+                return;
+            }// else
+                index++;
 
         }
 
