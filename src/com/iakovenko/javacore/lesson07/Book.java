@@ -61,7 +61,7 @@ public class Book {
                 authors[index] = author;
                 return;
               //  break;
-            } else if (authors[index].equals(author)) {
+            } if (authors[index].equals(author)) {
                 System.out.println("Автор " + author.getName() + " уже есть в списке соавторов.");
                // break;
                 return;
