@@ -45,8 +45,6 @@ public class Task1 {
         }
 
         System.out.println("Third option");
-
-
         int start = 0;
         int end = chars.length - 1;
 
@@ -62,6 +60,8 @@ public class Task1 {
             System.out.println("This String is palidrom");
         } else {
             System.out.println("This String is not palidrom");
+
+
 
 
         }

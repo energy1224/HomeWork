@@ -46,8 +46,6 @@ public class Lesson08 {
         System.out.println("проверки по третьей задаче");
 
         RepairShop repairShop = new RepairShop();
-        Vehicle[]vehicles=new Vehicle[6];
-        repairShop.setVehicles(vehicles);
 
         repairShop.addToVehicles(bicycle01);
         repairShop.addToVehicles(train01);
@@ -55,15 +53,27 @@ public class Lesson08 {
         repairShop.addToVehicles(car01);
         repairShop.addToVehicles(scooter01);
         repairShop.addToVehicles(scooter02);
-        repairShop.addToVehicles(bVehicle02);
+       // repairShop.addToVehicles(bVehicle02);
 
-        System.out.println(Arrays.toString(vehicles));
+        System.out.println(scooter01.getDefaultColour());
+
+
+
+
+        System.out.println(Arrays.toString(repairShop.getVehicles()));
 
         repairShop.repairAll();
 
-        System.out.println(Arrays.toString(vehicles));
+        System.out.println(Arrays.toString(repairShop.getVehicles()));
 
-        System.out.println(car01.getColour());
+      // System.out.println(car01.getColour());
+        System.out.println(scooter01.defaultColour);
+        scooter01.setDefaultColour();
+        System.out.println(scooter01.getDefaultColour());
+       car01.setDefaultColour();
+       System.out.println(car01.getColour());
+
+
 
 
 

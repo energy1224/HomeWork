@@ -27,11 +27,18 @@ public class Bicycle extends Vehicle{
         this.type = type;
     }
 
+
+
     public int getNumberOfWheels() {
         return numberOfWheels;
     }
 
     public String getType() {
         return type;
+    }
+
+    @Override
+    public void stop(){
+
     }
 }

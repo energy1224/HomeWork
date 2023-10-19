@@ -1,6 +1,6 @@
 package com.iakovenko.javacore.lesson08;
 
-public class Car extends Vehicle{
+public class Car extends Vehicle implements Colourable {
 //Машина наследуется от Транспортного средства и расширяет его свойством String color со значением по умолчанию -
 //   белый.
     private String colour ="белый";
@@ -15,11 +15,21 @@ public class Car extends Vehicle{
         return colour;
     }
     // В классе добавить возможность изменения цвета.
-    public void changeColour(String newColour){
-        this.colour=newColour;
-    }
+
 
     //Реализация метода repair: уменьшение уровня износа на 1, но не меньше 0
     // наследует от родителя.
+    public void stop(){
 
+    }
+    @Override
+    public void changeColour(String col) {
+        this.colour=col;
+
+    }
+    @Override
+    public void setDefaultColour() {
+        colour=super.defaultColour;
+
+    }
 }

@@ -1,7 +1,7 @@
 package com.iakovenko.javacore.lesson08;
 
 public class RepairShop {
-    private Vehicle[] vehicles;
+    private Vehicle[] vehicles = new Vehicle[6];
 
     // добавить свойство `private String[] colors = {"красный", "жёлтый", "оранжевый", "чёрный"};
     private String[] colors = {"красный", "жёлтый", "оранжевый", "чёрный"};
@@ -29,10 +29,11 @@ public class RepairShop {
     public void repairAll() {
         for (int i = 0; i < vehicles.length; i++) {
             if (vehicles[i] != null)
+                vehicles[i].stop();
                 vehicles[i].repair();
-            if (vehicles[i] instanceof Car car) {
+            if (vehicles[i] instanceof Colourable colourable) {
                 int index = (int) (Math.random() * 4);
-                car.changeColour(colors[index]);
+                colourable.changeColour(colors[index]);
             }
             vehicles[i] = null;
         }
@@ -40,6 +41,10 @@ public class RepairShop {
 
     public void setVehicles(Vehicle[] vehicles) {
         this.vehicles = vehicles;
+    }
+
+    public Vehicle[] getVehicles() {
+        return vehicles;
     }
 }
 

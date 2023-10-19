@@ -1,6 +1,6 @@
 package com.iakovenko.javacore.lesson08;
 // Самокат наследуется от Велосипеда и расширяет его свойством boolean isElectric
-public class Scooter extends Bicycle {
+public class Scooter extends Bicycle implements Colourable {
 
     // Самокат наследуется от Велосипеда и расширяет его свойством boolean isElectric
     private boolean isElectric;
@@ -14,12 +14,13 @@ public class Scooter extends Bicycle {
     }
 
 
+
 //            Реализация метода repair: если самокат электрический,
 //            уровень износа уменьшается на 2, в противном случае на 3, но не  меньше 0
 
 @Override
         public void repair(){
-        if (isElectric== true){
+        if (isElectric){
             if (levelOfWare >= 2)levelOfWare -= 2;
             else levelOfWare =0;
 
@@ -28,19 +29,16 @@ public class Scooter extends Bicycle {
             else levelOfWare =0;
         }
 
+    }
 
+    @Override
+    public void changeColour(String col) {
+        this.defaultColour=col;
+    }
+    @Override
+    public void setDefaultColour() {
+        defaultColour=getDefaultColour();
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 }

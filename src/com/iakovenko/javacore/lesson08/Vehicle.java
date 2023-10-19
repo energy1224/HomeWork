@@ -1,9 +1,11 @@
 package com.iakovenko.javacore.lesson08;
 
-public class Vehicle {
+ public abstract class Vehicle {
     protected String number; // null
     protected int levelOfWare; // 0
     protected int maxSpeed = 120; // 120
+
+    protected    String defaultColour = "White";
 
     public Vehicle(String number) {
         this.number = number;
@@ -13,7 +15,11 @@ public class Vehicle {
         this.maxSpeed = maxSpeed;
     }
 
-    public String getNumber(){
+     public String getDefaultColour() {
+         return defaultColour;
+     }
+
+     public String getNumber(){
         return number;
     }
 
@@ -36,6 +42,8 @@ public class Vehicle {
     public void repair(){
         if (levelOfWare > 0) levelOfWare--;
     }
+
+    public abstract void stop();
 
     @Override
     public String toString() {

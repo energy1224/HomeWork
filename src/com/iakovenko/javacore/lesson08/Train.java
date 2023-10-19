@@ -33,4 +33,8 @@ public class Train extends Vehicle {
 
         }
     }
+    @Override
+    public void stop(){
+
+    }
 }
