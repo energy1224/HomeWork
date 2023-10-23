@@ -53,10 +53,17 @@ public class Lesson08 {
         repairShop.addToVehicles(car01);
         repairShop.addToVehicles(scooter01);
         repairShop.addToVehicles(scooter02);
-       // repairShop.addToVehicles(bVehicle02);
 
+
+        System.out.println(scooter01.getColour());
+
+        scooter01.changeColour("Green");
+        System.out.println();
+        System.out.println(scooter01.getColour());
         System.out.println(scooter01.getDefaultColour());
-
+        scooter01.setDefaultColour();
+        System.out.println();
+        System.out.println(scooter01.getColour());
 
 
 
@@ -66,12 +73,6 @@ public class Lesson08 {
 
         System.out.println(Arrays.toString(repairShop.getVehicles()));
 
-      // System.out.println(car01.getColour());
-        System.out.println(scooter01.defaultColour);
-        scooter01.setDefaultColour();
-        System.out.println(scooter01.getDefaultColour());
-       car01.setDefaultColour();
-       System.out.println(car01.getColour());
 
 
 

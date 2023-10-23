@@ -5,6 +5,8 @@ public class Scooter extends Bicycle implements Colourable {
     // Самокат наследуется от Велосипеда и расширяет его свойством boolean isElectric
     private boolean isElectric;
 
+    private String colour;
+
 
     //    Значения isElectric и максимальная скорость всегда устанавливается через конструктор.
     // Количество колёс самоката всегда равно 2, а тип - "Городской". - наследует от велосипеда
@@ -13,7 +15,9 @@ public class Scooter extends Bicycle implements Colourable {
         this.isElectric= isElectric;
     }
 
-
+    public String getColour() {
+        return colour;
+    }
 
 //            Реализация метода repair: если самокат электрический,
 //            уровень износа уменьшается на 2, в противном случае на 3, но не  меньше 0
@@ -33,11 +37,12 @@ public class Scooter extends Bicycle implements Colourable {
 
     @Override
     public void changeColour(String col) {
-        this.defaultColour=col;
+        this.colour=col;
     }
     @Override
     public void setDefaultColour() {
-        defaultColour=getDefaultColour();
+        changeColour(getDefaultColour());
+       // colour=super.defaultColour;
 
 
     }
