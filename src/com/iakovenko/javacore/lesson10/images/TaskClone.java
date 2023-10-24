@@ -13,31 +13,14 @@ public class TaskClone {
         Gallery gallery02 = new Gallery("Winter",drawable01);
         Gallery gallery03 = new Gallery("Spring",drawable02);
         Drawable[] drawable03 = new Drawable[]{gallery01,gallery03,gallery02};
-        Editor editor01 = new Editor(image01);
-        Editor editor02 = new Editor(image01);
-        Editor editor03 = new Editor(image02);
+
         Editor editor04 = new Editor(gallery01);
-        Editor editor05 = new Editor(gallery02);
-        Editor editor06 = new Editor(gallery03);
 
+       Editor copyEditor=editor04.clone();
 
+        System.out.println(copyEditor.equals(editor04));
 
-        Gallery copyGallery = gallery01;
-        System.out.println(copyGallery.getImages()==gallery01.getImages());
-        copyGallery=gallery01.clone();
-        System.out.println(copyGallery.getImages()==gallery01.getImages());
-        System.out.println();
-
-
-        Editor copyEditor = editor01.clone();
-        copyEditor.setDrawable(copyGallery);
-
-
-
-        System.out.println(copyEditor==editor01);
-
-      //  editor04.show();
-        editor01.show();
+        editor04.show();
         copyEditor.show();
 
 

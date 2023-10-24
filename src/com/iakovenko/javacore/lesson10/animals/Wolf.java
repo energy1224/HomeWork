@@ -25,6 +25,9 @@ public class Wolf extends WildAnimal{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Wolf wolf = (Wolf) o;
+//        if(this.getStrength() != wolf.getStrength());
+//        if(this.getName() != wolf.getName());
+//        if(this.getAge() != wolf.getAge());
         return Arrays.equals(likeToEat, wolf.likeToEat) && Objects.equals(color, wolf.color);
     }
 

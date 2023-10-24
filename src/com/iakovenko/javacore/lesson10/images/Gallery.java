@@ -50,12 +50,12 @@ public class Gallery implements Drawable {
 
     @Override
     public Gallery clone() {
-        this.name = name;
+        String newName = name;
         Drawable[] drawables1 = new Drawable[drawables.length];
         for (int i = 0; i < drawables.length; i++) {
-            drawables1[i] = drawables[i].clone();
+            drawables1[i] = drawables[i];
         }
-        return new Gallery(name, drawables1);
+        return new Gallery(newName, drawables1);
 
 
     }
