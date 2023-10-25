@@ -3,32 +3,19 @@ package com.iakovenko.coursework.coursework01;
 import java.util.Arrays;
 
 public class Fitness {
+  //  private final int numberOfZones = 3;
+    private String name;
 
-    private TrainingZone [] fitness;
+   // private TrainingZone ;
 
-    public Fitness(TrainingZone[] fitness) {
-        this.fitness = fitness;
+    public Fitness(String name) {
+        this.name=name;
+        TrainingZone gym =new TrainingZone(Zone.GYM);
+        TrainingZone swimmingPool =new TrainingZone(Zone.SWIMMING_POOL);
+        TrainingZone groupClasses =new TrainingZone(Zone.GROUP_CLASSES);
     }
-//
-//    @Override
-//    public String toString() {
-//        return "Fitness{" +
-//                "swimmingPool=" + Arrays.toString(swimmingPool) +
-//                ", gym=" + Arrays.toString(gym) +
-//                ", groupClasses=" + Arrays.toString(groupClasses) +
-//                '}';
-//    }
-//    public Membership[] getSwimmingPool() {
-//        return swimmingPool;
-//    }
-//
-//    public Membership[] getGym() {
-//        return gym;
-//    }
-//
-//    public Membership[] getGroupClasses() {
-//        return groupClasses;
-//    }
+
+
 
 
     public void addMembership(Membership[] memberships, Membership membership){
