@@ -1,75 +1,81 @@
 package com.iakovenko.coursework.coursework01;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-public class Membership  {
+public class Membership {
 
-    TypeMembership typeMembership;
+    private static ArrayList<Integer> idList=new ArrayList<>(){{add(0);}};
+
+    private TypeMembership typeMembership;
     private int id;
 
-    private int registrationDate;
+    private LocalDateTime registrationDate;
 
-    private int expirationDate;
+    private  LocalDateTime  expirationDate;
 
     private Holder holder;
 
+    private boolean isTraining;  // false
 
-    public Membership(TypeMembership typeMembership, int id, int registrationDate, int expirationDate, Holder holder) {
+    public Membership(TypeMembership typeMembership,LocalDateTime registrationDate, Holder holder) {
         this.typeMembership = typeMembership;
-        this.id = id;
+        // генерация случайного id
+        while (id == 0) {
+            int x = (int) ((Math.random() * (99999 - 10000)) + 10000);
+            if (!idList.contains(x)) {
+                idList.add(x);
+                id = x;
+            }
+        }
         this.registrationDate = registrationDate;
-        this.expirationDate = expirationDate;
+
+        if(typeMembership.daysOfValidity == 365) expirationDate = registrationDate.plusDays(365);
+        else expirationDate = registrationDate;
+
         this.holder = holder;
-    }
 
-    @Override
-    public String toString() {
-        return "Membership{" +
-                "typeMembership=" + typeMembership +
-                ", id=" + id +
-                ", registrationDate=" + registrationDate +
-                ", expirationDate=" + expirationDate +
-                ", holder=" + holder +
-                '}';
-    }
+        }
 
-    public TypeMembership getTypeMembership() {
-        return typeMembership;
-    }
+        @Override
+        public String toString () {
+            return "Membership{" +
+                    "typeMembership=" + typeMembership +
+                    ", id=" + id +
+                    ", registrationDate=" + registrationDate +
+                    ", expirationDate=" + expirationDate +
+                    ", holder=" + holder +
+                    '}';
+        }
 
-    public void setTypeMembership(TypeMembership typeMembership) {
-        this.typeMembership = typeMembership;
-    }
+        public void setTraining(boolean training){
+            isTraining = training;
+        }
 
-    public int getId() {
-        return id;
-    }
+        public boolean isTraining() {
+            return isTraining;
+        }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public TypeMembership getTypeMembership () {
+            return typeMembership;
+        }
 
-    public int getRegistrationDate() {
-        return registrationDate;
-    }
+        public int getId () {
+            return id;
+        }
 
-    public void setRegistrationDate(int registrationDate) {
-        this.registrationDate = registrationDate;
-    }
+        public LocalDateTime getRegistrationDate () {
+            return registrationDate;
+        }
 
-    public int getExpirationDate() {
-        return expirationDate;
-    }
+        public LocalDateTime getExpirationDate () {
+            return expirationDate;
+        }
 
-    public void setExpirationDate(int expirationDate) {
-        this.expirationDate = expirationDate;
-    }
+        public Holder getHolder () {
+            return holder;
+        }
 
-    public Holder getHolder() {
-        return holder;
-    }
 
-    public void setHolder(Holder holder) {
-        this.holder = holder;
     }
-}

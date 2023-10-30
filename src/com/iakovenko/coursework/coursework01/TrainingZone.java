@@ -1,40 +1,61 @@
 package com.iakovenko.coursework.coursework01;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TrainingZone implements Fillable {
+public class TrainingZone  {
     private final int numberOfHolders = 20;
-    private Zone name;
-    private Membership[] zone;
-    private TypeMembership[] typeMembership;
-    public TrainingZone(Zone name) {
+    private ZoneName name;
+    private Membership[] registrationList;
+    private ArrayList<TypeMembership> permitedTypeMembership;
+
+    TrainingZone(ZoneName name) {
         this.name = name;
-        zone = new Membership[numberOfHolders];
-        if (name == Zone.SWIMMING_POOL)
-            typeMembership = new TypeMembership[]{TypeMembership.SINGLE_PASS, TypeMembership.FULL_PASS};
-        if (name == Zone.GYM)
-            typeMembership = new TypeMembership[]{TypeMembership.SINGLE_PASS, TypeMembership.FULL_PASS,TypeMembership.DAY_PASS};
-        if (name == Zone.GROUP_CLASSES)
-            typeMembership = new TypeMembership[]{TypeMembership.FULL_PASS,TypeMembership.DAY_PASS};
+        registrationList = new Membership[numberOfHolders];
+        if (name == ZoneName.SWIMMING_POOL) permitedTypeMembership = new ArrayList<TypeMembership>() {
+            {
+                add(TypeMembership.SINGLE_PASS);
+                add(TypeMembership.FULL_PASS);
+            }
+        };
+        if (name == ZoneName.GYM) permitedTypeMembership = new ArrayList<TypeMembership>() {
+            {
+                add(TypeMembership.SINGLE_PASS);
+                add(TypeMembership.DAY_PASS);
+                add(TypeMembership.FULL_PASS);
+            }
+        };
+        if (name == ZoneName.GROUP_CLASSES)
+            permitedTypeMembership = new ArrayList<TypeMembership>() {
+                {
+                    add(TypeMembership.FULL_PASS);
+                    add(TypeMembership.DAY_PASS);
+                }
+            };
     }
+
+
+
+        public ZoneName getName () {
+            return name;
+        }
+
+        public Membership[] getRegistrationList() {
+            return registrationList;
+        }
+
+        public ArrayList<TypeMembership> getpermitedTypeMembership() {
+            return permitedTypeMembership;
+        }
 
     @Override
     public String toString() {
         return "TrainingZone{" +
                 "numberOfHolders=" + numberOfHolders +
                 ", name=" + name +
-                ", zone=" + Arrays.toString(zone) +
-                ", typeMembership=" + Arrays.toString(typeMembership) +
+                ", registrationList=" + Arrays.toString(registrationList) +
+                ", permitedTypeMembership=" + permitedTypeMembership +
                 '}';
     }
+        }
 
-    @Override
-    public void setDefaultValues() {
-
-    }
-
-    @Override
-    public void addMembership(Membership[] list, Membership member) {
-
-    }
-}
