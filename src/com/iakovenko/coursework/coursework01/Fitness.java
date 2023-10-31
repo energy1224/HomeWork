@@ -1,20 +1,14 @@
 package com.iakovenko.coursework.coursework01;
-
+import java.time.LocalDateTime;
 public class Fitness {
-    //  private final int numberOfZones = 3;
     private String name;
-
-
-    private final TrainingZone gym = new TrainingZone(ZoneName.GYM);
-    private final TrainingZone swimmingPool = new TrainingZone(ZoneName.SWIMMING_POOL);
-    private final TrainingZone groupClasses = new TrainingZone(ZoneName.GROUP_CLASSES);
+    private final TrainingZone gym = new TrainingZone(TrainingZoneName.GYM);
+    private final TrainingZone swimmingPool = new TrainingZone(TrainingZoneName.SWIMMING_POOL);
+    private final TrainingZone groupClasses = new TrainingZone(TrainingZoneName.GROUP_CLASSES);
 
     public Fitness(String name) {
         this.name = name;
     }
-
-
-
     public String getName() {
         return name;
     }
@@ -31,62 +25,82 @@ public class Fitness {
         return groupClasses;
     }
 
-    @Override
-    public String toString() {
-        return "Fitness{" +
-                "name='" + name + '\'' +
-                ", gym=" + gym +
-                ", swimmingPool=" + swimmingPool +
-                ", groupClasses=" + groupClasses +
-                '}';
-    }
+    public void addMembership(TrainingZone trainingZone, ClubCard clubCard) {
+        LocalDateTime nowDateTime = LocalDateTime.now();
+        if (trainingZone == null) throw new IllegalArgumentException("TrainingZone not null");
+        if (clubCard == null) throw new IllegalArgumentException("membership not null");
+        //  проверил  не просрочен ли абонемент
+        if(clubCard.isExpired()) {
+            System.out.println("Ваш абонемент просрочен");
+            return;
+        }
+        //  проверил  не зарегистрирован ли абонемент в одной из зон
+        if (clubCard.isTraining()) {
+            System.out.println("Вы уже зарегистрированы в одной из зон");
+            return;
+        }
+        // проверил .добавить проверку дневного на бассейн.
 
-//    У Фитнеса должен быть реализован функционал добавления абонемента в одну из зон:
-//    Метод принимает на вход желаемую зону (тренажерный зал или бассейн, или групповые занятия) и абонемент.
-//    Перед добавлением абонемента в соответствующий массив необходимо проверить:
-//    можно ли по данному абонементу пройти в желаемую зону и есть ли в ней свободные места
-//    не просрочен ли абонемент
-//    не зарегистрирован ли абонемент в одной из зон
-//    Если абонемент проходит проверку п.2, то он добавляется в выбранную зону, в противном случае в консоль необходимо вывести причину отказа
+        if(!clubCard.getTypeMembership().permittedTrainingZone.contains(trainingZone.getName())){
+            System.out.println("У вас дневной абонемент и вы не можете посещать бассейн");
+            return;
+        }
+        //  проверил  можно ли по данному абонементу пройти в желаемую зону
+        if(!clubCard.checkPermittedTime()){
+            System.out.println("У вашего абонемента сейчас нет доступа в тренировочную зону");
+            return;
+        }
+     //  проверил есть ли в ней свободные места
+        if (trainingZone.getRegistrationList()[trainingZone.getRegistrationList().length-1] != null){
+            System.out.println("У вас есть доступ в тренировочную зону но она переполнена");
+            return;
+        }
 
-    public void addMembership(TrainingZone zone, Membership membership) {
-        if (zone == null) throw new IllegalArgumentException("TrainingZone not null");
-        if (membership == null) throw new IllegalArgumentException("membership not null");
-        boolean isContain = false;
-        if (membership.isTraining()) {
-            System.out.println("Вы уже тренируетесь в другой зоне");
-            return;
-        }
-     //   if() прверка на бассейн до 16.00
-        if (zone.getpermitedTypeMembership().contains(membership.getTypeMembership())) isContain = true;
-        if (!isContain) {
-            System.out.println("У вас нет доступа в тренировочную зону " + zone.getName());
-            return;
-        }
-        if ((zone.getRegistrationList()[zone.getRegistrationList().length - 1] != null)) {
-            System.out.println("У вас есть доступ в тренировочную зону " + zone.getName() + " , но она переполнена");
-            return;
-        }
-//        if () {
-//            System.out.println("У вас просрочен абонемент");
-//            return;
-//        }
-        int index = 0;
-        while (index < zone.getRegistrationList().length) {
-            if (zone.getRegistrationList()[index] == null) {
-                zone.getRegistrationList()[index] = membership;
-                membership.setTraining(true);
+        for (int i = 0; i < trainingZone.getRegistrationList().length; i++) {
+            if (trainingZone.getRegistrationList()[i] == null) {
+                trainingZone.getRegistrationList()[i] = clubCard;
+                clubCard.setTraining(true);
+
+//                Фамилия Имя Посещаемая зона (бассейн/тренажерный зал/групповые занятия)
+//                Дата и время посещения
+                System.out.println(clubCard.getHolder().getSurname()+" "
+                        + clubCard.getHolder().getName()+" " + trainingZone.getName() +"\n"
+                        +nowDateTime);
                 return;
             }
-            index++;
         }
+
     }
 
-    public void setRegistrationListDefault(TrainingZone zone){
-        if (zone == null) throw new IllegalArgumentException("TrainingZone not null");
-        for (int i = 0; i < zone.getRegistrationList().length-1 ; i++) {
-            zone.getRegistrationList()[i]=null;
+    public void setRegistrationListDefault(TrainingZone trainingZone){
+        if (trainingZone == null) throw new IllegalArgumentException("TrainingZone not null");
+        for (int i = 0; i < trainingZone.getRegistrationList().length; i++) {
+            trainingZone.getRegistrationList()[i]=null;
         }
+
+    }
+
+    public void printCurrentVisitors(){
+        System.out.println("В тренировочных зонах сейчас тренируются");
+        System.out.println("Тренажерный зал:");
+        for (ClubCard person:gym.getRegistrationList()) {
+            if(person!=null)
+                System.out.println(person.getHolder().getSurname()+ " "+ person.getHolder().getName() );
+        }
+
+        System.out.println("Бассейн:");
+        for (ClubCard person:swimmingPool.getRegistrationList()) {
+            if(person!=null)
+                System.out.println(person.getHolder().getSurname()+ " "+ person.getHolder().getName() );
+        }
+
+        System.out.println("Групповые занятия:");
+        for (ClubCard person:groupClasses.getRegistrationList()) {
+            if(person!=null)
+                System.out.println(person.getHolder().getSurname()+ " "+ person.getHolder().getName() );
+        }
+
+
 
     }
 }
