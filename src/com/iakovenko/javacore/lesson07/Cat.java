@@ -25,9 +25,9 @@ public class Cat {
         }
     }
     public void setWeight(int weight) {
-        if (weight < 1 || weight >= 9) {
+        if (weight < 1 || weight >= 9)
             throw new IllegalArgumentException("должно быть в диапазоне [1, 9)");
-        }
+
         this.weight = weight;
     }
 
