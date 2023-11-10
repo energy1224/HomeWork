@@ -9,31 +9,29 @@ public class MyLinkedList<T> {
     // ссылка на последний элемент списка
     private MyLinkedListNode<T> last;
 
-    public MyLinkedList() {
-        size = 0;
-
-        first = new MyLinkedListNode<>(null);
-
-        last = new MyLinkedListNode<>(null);
-    }
+//    public MyLinkedList() {
+//        size = 0;
+//
+//        first = new MyLinkedListNode<>(null);
+//
+//        last = new MyLinkedListNode<>(null);
+//    }
 
     // добавление элемента в список
     public void add(T t) {
+        MyLinkedListNode<T> newNode= new MyLinkedListNode<>(t);
         if (size == 0) {
-            first.setValue(t);
+            first= newNode;
+            last = newNode;
             first.setNextNode(last);
-            last.setValue(t);
-            last.setPreviousNode(first);
-
-        } else if (size == 1) {
-            last.setValue(t);
             last.setPreviousNode(first);
         } else {
-            MyLinkedListNode<T> newNode = last;
-            last = new MyLinkedListNode<>(t);
-            last.setPreviousNode(newNode);
-            newNode.setNextNode(last);
-          //  first.setNextNode(newNode);
+
+            last.setNextNode(newNode);
+            newNode.setPreviousNode(last);
+            last=newNode;
+            last.setNextNode(null);
+
         }
         size++;
 
