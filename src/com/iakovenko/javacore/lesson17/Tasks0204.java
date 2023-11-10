@@ -72,42 +72,49 @@ public class Tasks0204 {
     //   (можно добавить условие: артикли и предлоги не считаем за слова).
 
     private static void topRepeatedWords(String text) {
-        Map<String, Long> repeatingStrings;
-        Map<String, Long> sortedMap = new HashMap<>();
+        Map<String, Long> repeatingStrings=new HashMap<>();
+        //   Map<String, Long> sortedMap = new HashMap<>();
         String[] textWords = text.split(" ");
-        ArrayList<String> wordsList = new ArrayList<>();
-        for (int i = 0; i < textWords.length; i++)
-            wordsList.add(textWords[i]);
-        repeatingStrings = Task01.countRepeatedStrings(wordsList);
 
-        ArrayList<Long> valueList = new ArrayList<>();
-        Set<Map.Entry<String, Long>> repeatedString = repeatingStrings.entrySet();
-        for (Map.Entry<String, Long> repeatedWord : repeatedString)
-            valueList.add(repeatedWord.getValue());
-        Collections.sort(valueList);
-        Collections.reverse(valueList);
-        Set<Long>numList = new HashSet<>(valueList);
-        System.out.println(numList);
-
-
-
-        for (Long num: numList) {
-            System.out.println(num);
-            for (Map.Entry<String, Long> repeatedWord : repeatedString)
-                if (repeatedWord.getValue() == num) {
-
-                    System.out.println(repeatedWord.getKey());
-
-                }
-
+        long value;
+        for (int i = 0; i < textWords.length; i++) {
+            if (repeatingStrings.getOrDefault(textWords[i], -1L) == -1) {
+                value = 1;
+                repeatingStrings.put(textWords[i], value);
+            } else {
+                value = repeatingStrings.get(textWords[i]) + 1;
+                repeatingStrings.put(textWords[i], value);
+            }
         }
 
+        ValueComparator comparator =new ValueComparator();
 
-        System.out.println(sortedMap);
 
+        Set<Map.Entry<String, Long>> repeatedString = repeatingStrings.entrySet();
+
+        System.out.println(repeatedString);
+
+        System.out.println();
+
+        Set<Map.Entry<String, Long>> sortedSet = new TreeSet<>(comparator);
+        sortedSet.addAll(repeatedString);
+
+        System.out.println(sortedSet);
 
     }
-}
+
+   public static class ValueComparator implements Comparator<Map.Entry<String, Long>>{
+
+       @Override
+       public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
+
+           return (int) (o2.getValue()-o1.getValue());
+       }
+
+
+       }
+   }
+
 
 
 
