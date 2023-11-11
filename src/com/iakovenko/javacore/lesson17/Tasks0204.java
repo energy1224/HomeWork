@@ -89,6 +89,7 @@ public class Tasks0204  {
                 repeatingStrings.put(textWords[i], value);
             }
         }
+
         List <Map.Entry<String, Long>> valuesList = new ArrayList(repeatingStrings.entrySet());
 
         // первый вариант
@@ -102,9 +103,29 @@ public class Tasks0204  {
 //            }
 //        });
 
+        // третий вариант
+
+        ValueComparator <Map.Entry<String, Long>> comparator =new ValueComparator();
+
+        List <Map.Entry<String, Long>> list = new ArrayList<>(comparator);
+
+
+
+
         System.out.println("топ 10 самых часто встречаемых в тексте слов");
         for (int i = 0; i < 10; i++) System.out.println(valuesList.get(i));
 
+
+
+    }
+
+    public static class ValueComparator implements Comparator<Map.Entry<String, Long>>{
+
+        @Override
+        public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
+
+            return (int) (o2.getValue()-o1.getValue());
+        }
 
 
     }
