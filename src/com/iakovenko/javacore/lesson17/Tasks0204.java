@@ -2,7 +2,10 @@ package com.iakovenko.javacore.lesson17;
 
 import java.util.*;
 
-public class Tasks0204 {
+
+
+
+public class Tasks0204  {
 
     public static void main(String[] args) {
 
@@ -23,6 +26,8 @@ public class Tasks0204 {
 //        System.out.println(list);
 
         topRepeatedWords(text);
+
+
 
 
     }
@@ -73,9 +78,7 @@ public class Tasks0204 {
 
     private static void topRepeatedWords(String text) {
         Map<String, Long> repeatingStrings=new HashMap<>();
-        //   Map<String, Long> sortedMap = new HashMap<>();
         String[] textWords = text.split(" ");
-
         long value;
         for (int i = 0; i < textWords.length; i++) {
             if (repeatingStrings.getOrDefault(textWords[i], -1L) == -1) {
@@ -86,34 +89,31 @@ public class Tasks0204 {
                 repeatingStrings.put(textWords[i], value);
             }
         }
+        List <Map.Entry<String, Long>> valuesList = new ArrayList(repeatingStrings.entrySet());
 
-        ValueComparator comparator =new ValueComparator();
+        // первый вариант
+        valuesList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+       // второй вариант
+//        Collections.sort(valuesList, new Comparator<Map.Entry< String, Long>>() {
+//            @Override
+//            public int compare(Map.Entry<String,Long> o1, Map.Entry< String, Long> o2) {
+//                return (int) (o2.getValue()-o1.getValue());
+//            }
+//        });
+
+        System.out.println("топ 10 самых часто встречаемых в тексте слов");
+        for (int i = 0; i < 10; i++) System.out.println(valuesList.get(i));
 
 
-        Set<Map.Entry<String, Long>> repeatedString = repeatingStrings.entrySet();
-
-        System.out.println(repeatedString);
-
-        System.out.println();
-
-        Set<Map.Entry<String, Long>> sortedSet = new TreeSet<>(comparator);
-        sortedSet.addAll(repeatedString);
-
-        System.out.println(sortedSet);
 
     }
 
-   public static class ValueComparator implements Comparator<Map.Entry<String, Long>>{
-
-       @Override
-       public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
-
-           return (int) (o2.getValue()-o1.getValue());
-       }
 
 
-       }
-   }
+
+    }
+
 
 
 
