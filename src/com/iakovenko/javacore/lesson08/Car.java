@@ -11,9 +11,7 @@ public class Car extends Vehicle implements Colourable {
         this.maxSpeed = 240;
     }
 
-    public String getColour() {
-        return colour;
-    }
+
     // В классе добавить возможность изменения цвета.
 
 
@@ -30,6 +28,12 @@ public class Car extends Vehicle implements Colourable {
     @Override
     public void setDefaultColour() {
         colour=super.defaultColour;
+
+    }
+
+    @Override
+    public String getColor() {
+        return colour;
 
     }
 }

@@ -104,12 +104,12 @@ public class Tasks0204  {
 //        });
 
         // третий вариант
-
-        ValueComparator <Map.Entry<String, Long>> comparator =new ValueComparator();
-
-        List <Map.Entry<String, Long>> list = new ArrayList<>(comparator);
-
-
+//
+//        ValueComparator <Map.Entry<String, Long>> comparator =new ValueComparator();
+//
+//        List <Map.Entry<String, Long>> list = new ArrayList<>(comparator);
+//
+//
 
 
         System.out.println("топ 10 самых часто встречаемых в тексте слов");

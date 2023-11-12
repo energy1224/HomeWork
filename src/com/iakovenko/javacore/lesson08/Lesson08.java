@@ -20,9 +20,9 @@ public class Lesson08 {
         System.out.println("проверки по первой задаче");
         Car car01 = new Car("456");
         System.out.println(car01.getMaxSpeed());
-        System.out.println(car01.getColour());
+        System.out.println(car01.getColor());
         car01.changeColour("черный");
-        System.out.println(car01.getColour());
+        System.out.println(car01.getColor());
 
         // проверки по второй задаче
         System.out.println("проверки по второй задаче");
@@ -55,15 +55,15 @@ public class Lesson08 {
         repairShop.addToVehicles(scooter02);
 
 
-        System.out.println(scooter01.getColour());
+        System.out.println(scooter01.getColor());
 
         scooter01.changeColour("Green");
         System.out.println();
-        System.out.println(scooter01.getColour());
+        System.out.println(scooter01.getColor());
         System.out.println(scooter01.getDefaultColour());
         scooter01.setDefaultColour();
         System.out.println();
-        System.out.println(scooter01.getColour());
+        System.out.println(scooter01.getColor());
 
 
 

@@ -6,5 +6,9 @@ public interface Colourable {
 
     void setDefaultColour();
 
+    String getColor();
+
+
+
 
 }

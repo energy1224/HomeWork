@@ -15,6 +15,8 @@ package com.iakovenko.javacore.lesson08;
         this.maxSpeed = maxSpeed;
     }
 
+
+
      public String getDefaultColour() {
          return defaultColour;
      }

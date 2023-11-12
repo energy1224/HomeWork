@@ -15,11 +15,12 @@ public class Scooter extends Bicycle implements Colourable {
         this.isElectric= isElectric;
     }
 
-    public String getColour() {
+    @Override
+    public String getColor() {
         return colour;
-    }
 
-//            Реализация метода repair: если самокат электрический,
+    }
+    //            Реализация метода repair: если самокат электрический,
 //            уровень износа уменьшается на 2, в противном случае на 3, но не  меньше 0
 
 @Override
