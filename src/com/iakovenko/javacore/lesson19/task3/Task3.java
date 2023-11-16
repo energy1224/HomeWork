@@ -35,6 +35,7 @@ public class Task3 {
 
 //        System.out.println(task01(articles));
 //        System.out.println(task02(articles, Article.Category.FOOD));
+        // комментарий
 
      //   System.out.println(task03(articles, Article.Category.FOOD,20,44));
         System.out.println(task04(articles, Article.Category.FOOD));
