@@ -3,6 +3,7 @@ package com.iakovenko.javacore.lesson19.task3;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,23 +46,25 @@ public class Task3 {
         // Некоторые из этих методов могут понадобиться при решении задач
     }
     public static Double task01(ArrayList<Article> articles) {
-        LocalDate nowDate = LocalDate.now();
+
         // Вернуть средний возраст авторов статей
-        double averageAge = articles.stream()
-                .map(article -> article.getAuthors())
-                .flatMap(authorHashMap -> authorHashMap.values().stream())
-                .map(author -> author.getBirth().getYear())
-                .mapToInt(age -> nowDate.getYear() - age)
-                .average().orElse(0);
-        return averageAge;
+        return articles.stream()
+                .flatMapToInt(article -> article.getAuthors().values().stream()
+                        .mapToInt(author -> {
+                            LocalDate current = LocalDate.now();
+                            LocalDate authorBirth = author.getBirth();
+                            return Period.between(authorBirth, current).getYears();
+                        })
+                )
+                .average().getAsDouble();
     }
+
     public static List<String> task02(ArrayList<Article> articles, Article.Category category) {
         // Вернуть список email авторов статей категории == category
         List<String> authorsByCategory= articles.stream()
                 .filter(byCategory-> byCategory.getCategory()==category)
-                .map(article -> article.getAuthors())
-                .flatMap(authorHashMap -> authorHashMap.values().stream())
-                .map(email->email.getEmail())
+                .flatMap(article -> article.getAuthors().values().stream()
+                        .map(author -> author.getEmail()))
                 .toList();
         return authorsByCategory;
     }
@@ -69,21 +72,24 @@ public class Task3 {
         LocalDate nowDate = LocalDate.now();
         // Вернуть список статей категории == category,
         // возраст авторов которых попадает в диапазон от min до max
-       List<Article> articlesByCategory=articles.stream()
+       return articles.stream()
                .filter(byCategory-> byCategory.getCategory()==category)
-               .filter(article->(article.getAuthors().values().stream()
-                        .allMatch(s->(nowDate.getYear()-s.getBirth().getYear())>min
-                                && (nowDate.getYear()-s.getBirth().getYear())<max)))
+               .filter(article->article.getAuthors().values().stream()
+                       .allMatch(author -> {
+                           int age = Period.between(author.getBirth(), LocalDate.now()).getYears();
+                           return age > min && age < max;
+                       })
+               )
                .toList();
 
-        return articlesByCategory;
+
     }
     public static List<Article> task04(ArrayList<Article> articles, Article.Category category) {
         // Вернуть список статей категории == category, опубликованных сегодня
-        LocalDateTime nowDate = LocalDateTime.now();
+
         List<Article> todayPublished =articles.stream()
                 .filter(byCategory-> byCategory.getCategory()==category)
-                .filter(article -> article.getPublished().getDayOfMonth()==nowDate.getDayOfMonth())
+                .filter(article -> article.getPublished().toLocalDate().equals(LocalDate.now()))
                 .toList();
         return todayPublished;
     }

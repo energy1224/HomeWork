@@ -45,7 +45,7 @@ public class Task02Vehicles {
 
         vehicles.stream()
                 .peek(s->s.changeColor(Repaintable.Color.GOLD))
-                .forEach(s-> System.out.println(s));
+                 .forEach(s-> System.out.println(s));
 
 
 
