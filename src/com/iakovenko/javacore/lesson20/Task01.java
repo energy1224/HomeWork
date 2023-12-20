@@ -28,8 +28,7 @@ import java.util.stream.Collectors;
             Map<Student.Gender, ArrayList<Student>> studentsByGender = students.stream()
                     .collect(Collectors.groupingBy(
                             student -> student.getGender()
-                            , Collectors.toCollection(ArrayList::new)
-                    ));
+                            ,Collectors.toCollection(ArrayList::new)));
             System.out.println(studentsByGender);
 
             //  2. Найти средний возраст учеников
@@ -48,8 +47,7 @@ import java.util.stream.Collectors;
             //  5. Собрать учеников в группы по году рождения, результат - Map<Integer, List<Student>>
             Map<Integer, List<Student>> studentByYear = students.stream()
                     .collect(Collectors.groupingBy
-                            (student -> (int) student.getBirth().getYear(),
-                                    Collectors.toCollection(ArrayList::new)));
+                            (student -> student.getBirth().getYear()));
             System.out.println(studentByYear);
 
             //  6. Отсортировать по полу, дате рождения, имени (в обратном порядке),
@@ -79,16 +77,17 @@ import java.util.stream.Collectors;
 //              8. Собрать Map<Student.Gender, Integer>,
 //              где Student.Gender - пол,
 //              Integer - суммарный возраст учеников данного пола
-
+            System.out.println(8+"задача");
             Map<Student.Gender, Integer> ageByGender = students.stream()
                     .collect(Collectors.groupingBy(
                             student -> student.getGender(),
-                            Collectors.summarizingInt(student->{
-                                        Integer sum= (Integer) LocalDate.now().getYear() - student.getBirth().getYear();
+                            Collectors.summingInt(student-> {
+                                        int sum = LocalDate.now().getYear() - student.getBirth().getYear();
                                         return sum;
                                     }
-
                             )));
+            System.out.println(ageByGender);
+
 
 
         }
