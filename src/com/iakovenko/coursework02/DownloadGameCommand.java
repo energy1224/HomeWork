@@ -4,11 +4,10 @@ public class DownloadGameCommand implements Command{
 
     private Game theGame;
 
-    private String text ="Download game";
+    private String text ="Загрузить игру";
 
     public DownloadGameCommand(Game theGame) {
         this.theGame = theGame;
-        this.text = text;
     }
 
     @Override

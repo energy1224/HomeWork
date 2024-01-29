@@ -4,11 +4,10 @@ public class EscapeGameCommand implements Command{
 
     private Game theGame;
 
-    private String text = "Escape game";
+    private String text = "Выйти из игры";
 
     public EscapeGameCommand(Game theGame) {
         this.theGame = theGame;
-        this.text = text;
     }
 
     @Override

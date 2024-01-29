@@ -4,11 +4,11 @@ public class SaveGameCommand implements Command{
 
     private Game theGame;
 
-    private String text ="Save game";
+    private String text ="Сохранить игру";
 
     public SaveGameCommand(Game theGame) {
         this.theGame = theGame;
-        this.text = text;
+
     }
 
     @Override

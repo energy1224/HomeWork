@@ -4,11 +4,10 @@ public class StartGameCommand implements Command{
 
     private Game theGame;
 
-    private String text = "Start game";
+    private String text = "Начать игру";
 
     public StartGameCommand(Game theGame) {
         this.theGame = theGame;
-        this.text = text;
     }
 
     @Override
